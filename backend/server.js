@@ -1,7 +1,8 @@
 const http = require("http");
 
 const server = http.createServer((req, res) => {
-  res.end("This is my server response!");
+  res.end("This is my second server response!");
+  console.log("This is my first server response!");
 });
 
 server.listen(process.env.PORT || 3000);
