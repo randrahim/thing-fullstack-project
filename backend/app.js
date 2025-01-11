@@ -11,7 +11,7 @@ app.post("/api/stuff", (req, res, next) => {
   });
 });
 
-app.get((req, res, next) => {
+app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
@@ -24,7 +24,7 @@ app.get((req, res, next) => {
   next();
 });
 
-app.use("/api/stuff", (req, res, next) => {
+app.get("/api/stuff", (req, res, next) => {
   const stuff = [
     {
       _id: "oeihfzeoi",
