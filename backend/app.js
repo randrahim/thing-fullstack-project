@@ -1,15 +1,22 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const app = express();
 
 app.use(express.json());
 
-app.post("/api/stuff", (req, res, next) => {
-  console.log(req.body);
-  res.status(201).json({
-    message: "Thing created successfully!",
+mongoose
+  .connect(
+    "mongodb+srv://randtest:aqiulPku6KhqVogX@cluster0.whnuo.mongodb.net/"
+  )
+  .then(() => {
+    console.log("Successfully connected to MongoDB Atlas!");
+  })
+  .catch((error) => {
+    console.log("Unable to connect to MongoDB Atlas!");
+    console.error(error);
   });
-});
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -22,6 +29,13 @@ app.use((req, res, next) => {
     "GET, POST, PUT, DELETE, PATCH, OPTIONS"
   );
   next();
+});
+
+app.post("/api/stuff", (req, res, next) => {
+  console.log(req.body);
+  res.status(201).json({
+    message: "Thing created successfully!",
+  });
 });
 
 app.get("/api/stuff", (req, res, next) => {
