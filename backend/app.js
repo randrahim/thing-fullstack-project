@@ -2,26 +2,16 @@ const express = require("express");
 
 const app = express();
 
-// app.use((req, res, next) => {
-//   console.log("Request received!");
-//   next();
-// });
+app.use(express.json());
 
-// app.use((req, res, next) => {
-//   res.status(201);
-//   next();
-// });
+app.post("/api/stuff", (req, res, next) => {
+  console.log(req.body);
+  res.status(201).json({
+    message: "Thing created successfully!",
+  });
+});
 
-// app.use((req, res, next) => {
-//   res.json({ message: "Your request was successful!" });
-//   next();
-// });
-
-// app.use((req, res, next) => {
-//   console.log("Response sent successfully!");
-// });
-
-app.use((req, res, next) => {
+app.get((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
